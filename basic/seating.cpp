@@ -1,35 +1,36 @@
 #include <iostream>
 
 int main() {
-  int arr[109];
-  int x = 1;
-  for(int i = 1; i <= 108; ) {
-    if(x == 1) {
-      arr[i++] = 1;
-      arr[i++] = 2;
-      arr[i++] = 3;
-      x = 0;
-    } else {
-      arr[i++] = 3;
-      arr[i++] = 2;
-      arr[i++] = 1;
-      x = 1;
-    }
-  } 
-
   int t;
   std::cin >> t;
-  while(t--) {
-    std::cin >> x;
-    if(arr[x] == 1)
-      std::cout << "WS" << std::endl;
-    else if(arr[x] == 2)
-      std::cout << "MS" << std::endl;
-    else
-      std::cout << "AS" << std::endl;
-  }
 
-  
+  while(t--) {
+    int x;
+    std::cin >> x;
+
+    int m = x % 12;
+
+    if (m == 0)
+      m = 12;
+
+    int seating = m;
+    int facing;
+
+    if(m > 6) {
+      seating = m - 6;
+    }
+
+    facing = 13 - m;
+    facing = x - m + facing;
+    
+    if(seating == 1 || seating == 6)
+      std::cout << facing << " " << "WS" << std::endl;
+    else if(seating == 2 || seating == 5)
+      std::cout << facing << " " << "MS" << std::endl;
+    else
+      std::cout << facing << " " << "AS" << std::endl;
+
+  }
   
   return 0;
 }
