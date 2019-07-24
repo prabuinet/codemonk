@@ -9,21 +9,21 @@ using std::cout;
 void anagram() {
   string s1;
   string s2;
-
+  
   cin >> s1;
   cin >> s2;
-
+  
   
   int arr[125];
   for(int i = 0; i < 125; i++)
     arr[i] = 0;
-
+  
   for(int i = 0; i < s1.size(); i++) {
     arr[(int) s1[i]]++;
   }
-
+  
   int to_delete = 0;
-
+  
   for(int i = 0; i < s2.size(); i++) {
     int x = (int) s2[i];
     if(arr[x] > 0)
@@ -31,7 +31,7 @@ void anagram() {
     else
       to_delete++;
   }
-
+  
   for(int i = 0; i < 125; i++) {
     to_delete += arr[i];
   }
