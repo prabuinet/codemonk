@@ -30,3 +30,17 @@ int main() {
   
   return 0;
 }
+
+/*
+
+use length of string to find odd or even instead of i - j == 2
+
+int len = str.length();
+
+// use and operator to check even or odd; len & 1 compares the last bit
+if (len & 1)
+   cout << "odd"
+else
+   cout << "even"
+
+*/

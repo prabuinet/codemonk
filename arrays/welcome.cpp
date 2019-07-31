@@ -19,3 +19,16 @@ int main() {
   
   return 0;
 }
+
+
+/*
+
+learnt:
+
+use this header includes all the other headers
+#include <bits/stdc++.h>
+
+declare arrays statically like this for example: 10^5
+int a[100005];
+
+*/

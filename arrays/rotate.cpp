@@ -26,29 +26,5 @@ int main() {
   return 0;
 }
 
-int main2() {
-  fstream f1, f2;
-  f1.open("1.txt", ios_base::in);
-  f2.open("2.txt", ios_base::in);
-  
-  while(!f1.eof() && !f2.eof()) {
-    int i1, i2;
-    f1 >> i1;
-    f2 >> i2;
-    if (i1 != i2)
-      cout << "Not Equal ";
-    cout << i1 << " " << i2 << " " << endl;
-  }
-}
 
-
-/*
-
-N K
-5 0 5%5 0
-5 2 3%5 3
-5 8 -3
-
-
-*/
 
