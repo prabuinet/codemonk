@@ -2,6 +2,9 @@
 
 using namespace std;
 
+int     arr[1000006];
+int tmp_arr[1000006];
+
 /* 32k ints sorted in 3 seconds */
 
 // keeps swapping each element from 0 to n-1, so that highest reaches n-1
@@ -69,26 +72,118 @@ int insertion(int arr[], int n){
 }
 
 
+void merge(int arr[], int start, int mid, int end) {
+
+  int n = end - start + 1;
+
+  int p = start;
+  int q = mid + 1;
+  
+  for(int i = 0; i < n; i++) {
+
+    if(p > mid) {
+      tmp_arr[i] = arr[q++];
+      //cout << "p > mid" << endl;
+    }
+
+    else if(q > end) {
+      tmp_arr[i] = arr[p++];
+      //cout << "q > mid" << endl;
+    }
+
+    else if(arr[p] < arr[q]) {
+      tmp_arr[i] = arr[p++];
+      //cout << "arr[p] < arr[q]" << endl;      
+    }
+
+    else {
+      tmp_arr[i] = arr[q++];
+      //cout << "arr[p] > arr[q]" << endl;      
+    }
+  }
+
+  for(int i = 0; i < n; i++)
+    arr[start + i] = tmp_arr[i];
+
+  //  for(int i = 0; i < n; i++)
+  //    cout << tmp_arr[i] << ' ';
+  
+  //cout << endl;
+}
+
+void merge_sort(int arr[], int start, int end) {
+  if (start < end) {
+    int mid = start + (end - start) / 2;
+
+    merge_sort(arr, start, mid);
+    merge_sort(arr, mid+1, end);
+    merge(arr, start, mid, end);
+    
+  }
+}
+
+void swap(int arr[], int i, int j) {
+  int temp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = temp;
+}
+
+int partition(int arr[], int start, int end) {
+
+  int p = start;
+  int pval = arr[p];
+  int li = start + 1;
+  int gi = start + 1;
+
+  while(gi <= end) {
+
+    if(arr[gi] < pval) {
+      swap(arr, li, gi);
+      li++;
+    }
+
+    gi++;
+  }
+
+  swap(arr, p, li - 1);
+  return li - 1;
+}
+
+int quick(int arr[], int start, int end) {
+  if(start < end) {
+    int piv_pos = partition(arr, start, end);
+    quick(arr, start, piv_pos - 1);
+    quick(arr, piv_pos + 1, end);
+  }
+}
 
 int xmain() {
 
-  int arr[] = { 5, 4, 5, 2, 50, 3, 10 };
+  //int arr[] = { 5, 4, 5, 2, 50, 3, 10 };
+
+  int arr[] = {5, 4, 8, 2, 50, 3, 10};
+
+  for(int i = 0; i < 7; i++)
+    cout << arr[i] << ' ';
+  cout << endl;
+  
+  quick(arr, 0, 6);
 
   //bubble(arr, 7);
   //selection(arr, 7);
   //insertion(arr, 7);
+  //merge_sort(arr, 0, 6);
 
+  
   for(int i = 0; i < 7; i++)
     cout << arr[i] << ' ';
 
   cout << '\n';
 }
 
-int main() {
-  int arr_size = 100000;
-  
-  int arr[arr_size];
 
+
+int main() {
   int n = 0;
 
   int x;
@@ -100,6 +195,7 @@ int main() {
   //bubble(arr, n);
   //selection(arr, n);
   //insertion(arr, n);
+  quick(arr, 0, n-1);
 
   for(int i = 0; i < n; i++)
     cout << arr[i] << endl;  
