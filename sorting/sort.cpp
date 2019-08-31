@@ -195,7 +195,8 @@ int main() {
   //bubble(arr, n);
   //selection(arr, n);
   //insertion(arr, n);
-  quick(arr, 0, n-1);
+  //merge_sort(arr, 0, n-1);
+  //quick(arr, 0, n-1);
 
   for(int i = 0; i < n; i++)
     cout << arr[i] << endl;  
