@@ -3,7 +3,7 @@
 
 using namespace std;
 
-typedef unsigned long long ull;
+typedef long long ull;
 
 ull arr[1000006];
 ull weights[1000006];
