@@ -81,25 +81,14 @@ void merge(int arr[], int start, int mid, int end) {
   
   for(int i = 0; i < n; i++) {
 
-    if(p > mid) {
+    if(p > mid) 
       tmp_arr[i] = arr[q++];
-      //cout << "p > mid" << endl;
-    }
-
-    else if(q > end) {
+    else if(q > end)
       tmp_arr[i] = arr[p++];
-      //cout << "q > mid" << endl;
-    }
-
-    else if(arr[p] < arr[q]) {
+    else if(arr[p] < arr[q])
       tmp_arr[i] = arr[p++];
-      //cout << "arr[p] < arr[q]" << endl;      
-    }
-
-    else {
+    else
       tmp_arr[i] = arr[q++];
-      //cout << "arr[p] > arr[q]" << endl;      
-    }
   }
 
   for(int i = 0; i < n; i++)
